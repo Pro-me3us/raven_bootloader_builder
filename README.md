@@ -39,7 +39,7 @@ sudo dd if=bl33.bin.enc of=bootloader.img skip=$IN_OFFSET seek=$OUT_OFFSET bs=1 
 sudo openssl enc -aes-256-cbc -nopad -e -K 0000000000000000000000000000000000000000000000000000000000000000 -iv 00000000000000000000000000000000 -in bootloader.img -out bootloader.img.enc
 ```
 
-## Modification to build script 
+### Modification to build script 
 Minor modifications were made to the build script to disable the automatic cleanup following compilation completion. Deletion of the working folder is disabled to to make all the components of the bootloader accessible including bl33.bin.enc, the patched U-Boot image.
 
 Disable deletion of the working folder
@@ -56,7 +56,7 @@ bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
     rm ${BUILD_FOLDER}/* -rf
 ```
 
-## Patching Bl33 to remove Amazon's restrictions on Fastboot and U-Boot commands
+### Patching Bl33 to remove Amazon's restrictions on Fastboot and U-Boot commands
 
 
 
