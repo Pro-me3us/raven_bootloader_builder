@@ -48,7 +48,9 @@ Disable deletion of the working folder
 
 Disable deletion of the bootloader component images
 <platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
-```function clean() {
+Original:
+```
+function clean() {
 	echo "Clean up"
 	cd ${UBOOT_SRC_FOLDER}
 	make distclean
@@ -56,8 +58,9 @@ Disable deletion of the bootloader component images
 	rm ${FIP_BUILD_FOLDER} -rf
 	rm ${BUILD_FOLDER}/* -rf
 	return
-}```
-
+}
+```
+Modified:
 ```function clean() {
 	echo "Clean up"
 	return
