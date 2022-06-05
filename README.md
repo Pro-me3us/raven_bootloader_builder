@@ -61,10 +61,12 @@ function clean() {
 }
 ```
 Modified:
-```function clean() {
+```
+function clean() {
 	echo "Clean up"
 	return
-}```
+}
+```
 
 
 ### Patching Bl33 to remove Amazon's restrictions on Fastboot and U-Boot commands
