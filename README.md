@@ -47,14 +47,22 @@ Disable deletion of the working folder
 ```trap "rm -rf $WORKSPACE_DIR" EXIT```
 
 Disable deletion of the bootloader component images
-bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
-```
-    cd ${UBOOT_SRC_FOLDER}
-    make distclean
-    cd ${MAIN_FOLDER}
-    rm ${FIP_BUILD_FOLDER} -rf
-    rm ${BUILD_FOLDER}/* -rf
-```
+<platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
+```function clean() {
+	echo "Clean up"
+	cd ${UBOOT_SRC_FOLDER}
+	make distclean
+	cd ${MAIN_FOLDER}
+	rm ${FIP_BUILD_FOLDER} -rf
+	rm ${BUILD_FOLDER}/* -rf
+	return
+}```
+
+```function clean() {
+	echo "Clean up"
+	return
+}```
+
 
 ### Patching Bl33 to remove Amazon's restrictions on Fastboot and U-Boot commands
 
