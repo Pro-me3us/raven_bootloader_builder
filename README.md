@@ -8,8 +8,9 @@ This bootloader compiler is a modification of the build script included with <a 
 Running the script requires installing aarch64-none-elf & arm-none-eabi compiler Toolchains. Follow Odroid's <a href="https://wiki.odroid.com/odroid-n2/software/building_u-boot">Toolchain installation</a> guide. Add the installed compiler paths to build_uboot_config.sh, and run build_uboot_config.sh to update build_uboot.sh.
 
 ### Compiling the bootloader
-To compile the bootloader run:
+To compile the bootloader run:<br>
 <code>sudo ./build_uboot.sh platform.tar output_directory_name</code>
+
 Platform.tar contains the source code for bootloader and kernel, and includes our modifications to remove fastboot & U-Boot command restrictions. It's sourced from FireTVCubeGen2-7.2.0.4-20191004.tar.bz2. 
 
 output_directory_name is the completed bootloader image destination.
@@ -38,29 +39,25 @@ sudo dd if=bl33.bin.enc of=bootloader.img skip=$IN_OFFSET seek=$OUT_OFFSET bs=1 
 sudo openssl enc -aes-256-cbc -nopad -e -K 0000000000000000000000000000000000000000000000000000000000000000 -iv 00000000000000000000000000000000 -in bootloader.img -out bootloader.img.enc
 ```
 
-## Modifications made 
+## Modification to build script 
+Minor modifications were made to the build script to disable the automatic cleanup following compilation completion. Deletion of the working folder is disabled to to make all the components of the bootloader accessible including bl33.bin.enc, the patched U-Boot image.
 
-Automatic cleanup following compilation completion has been removed to make all the components of the bootloader accessible including bl33.bin.enc, our restriction-free U-Boot image.
+Disable deletion of the working folder
+<build_uboot.sh> delete line 48 
+```trap "rm -rf $WORKSPACE_DIR" EXIT```
 
-<build_uboot.sh> delete line 48 -trap "rm -rf $WORKSPACE_DIR" EXIT
-
-remove clean function that deletes all the bootloader component images <bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
-
+Disable deletion of the bootloader component images
+bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh>
+```
     cd ${UBOOT_SRC_FOLDER}
     make distclean
     cd ${MAIN_FOLDER}
     rm ${FIP_BUILD_FOLDER} -rf
     rm ${BUILD_FOLDER}/* -rf
+```
 
+## Patching Bl33 to remove Amazon's restrictions on Fastboot and U-Boot commands
 
-
-
-
-
-
-
-
-<build_uboot.sh> delete line 48 -trap "rm -rf $WORKSPACE_DIR" EXIT
 
 
 
