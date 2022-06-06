@@ -152,7 +152,7 @@ __attribute__((weak)) int is_locked_production_device() {
 }
 ```
 
-**[amzn_fastboot_lockdown.c]** Original[br]
+**[amzn_fastboot_lockdown.c]** Original<br>
 ```
 	for (i = 0; i < sizeof(blacklist) / sizeof(blacklist[0]); ++i) {
 		if (memcmp(buffer, blacklist[i], strlen(blacklist[i])) == 0) {
