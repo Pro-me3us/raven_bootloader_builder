@@ -41,7 +41,10 @@ sudo dd if=bl33.bin.enc of=bootloader.img skip=$IN_OFFSET seek=$OUT_OFFSET bs=1 
 sudo openssl enc -aes-256-cbc -nopad -e -K 0000000000000000000000000000000000000000000000000000000000000000 -iv 00000000000000000000000000000000 -in bootloader.img -out bootloader.img.enc
 ```
 
-### Modifications made to build script 
+
+
+## File modifications made
+### Build script 
 Minor modifications were made to the build script to disable the automatic cleanup following compilation completion. Deletion of the working folder is disabled to to make all the components of the bootloader accessible including <code>bl33.bin.enc</code> (patched U-Boot image).
 
 [<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/build_uboot.sh">build_uboot.sh</a>]<br>
