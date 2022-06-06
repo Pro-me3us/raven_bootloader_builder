@@ -72,32 +72,32 @@ Removing Amazon's U-Boot commandline restrictions<br>
 ```
 bool amzn_is_command_blocked(const char *cmd)
 {
--	int i = 0, found = 0;
--
--	/* Are we in lock down? */
--	if (lockdown_commands == false)
--		return false;
--
--	/* Is this an engineering device? */
--	if (amzn_target_device_type() == AMZN_ENGINEERING_DEVICE)
--		return false;
--
--	/* Are we un-locked? */
--	if (amzn_target_is_unlocked())
--		return false;
--
--	if (amzn_target_is_onetime_unlocked())
--		return false;
--
--	/* If command is on the white-list, allow */
--	for (i = 0; i < ARRAY_SIZE(whitelisted_commands); i++)
--		if (strcmp(whitelisted_commands[i], cmd) == 0)
--			found = 1;
--
--	/* Not on the white-list? Block */
--	if (!found)
--		return true;
--
+	int i = 0, found = 0;
+
+	/* Are we in lock down? */
+	if (lockdown_commands == false)
+		return false;
+
+	/* Is this an engineering device? */
+	if (amzn_target_device_type() == AMZN_ENGINEERING_DEVICE)
+		return false;
+
+	/* Are we un-locked? */
+	if (amzn_target_is_unlocked())
+		return false;
+
+	if (amzn_target_is_onetime_unlocked())
+		return false;
+
+	/* If command is on the white-list, allow */
+	for (i = 0; i < ARRAY_SIZE(whitelisted_commands); i++)
+		if (strcmp(whitelisted_commands[i], cmd) == 0)
+			found = 1;
+
+	/* Not on the white-list? Block */
+	if (!found)
+		return true;
+
 	return false;
 }
 ```
@@ -145,7 +145,7 @@ __attribute__((weak)) int is_locked_production_device() {
 #endif /* UFBL_PROJ_ABC */
 ```
 
-[amzn_fastboot_lockdown.c patched] 1st Patch<br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/ufbl-features/features/fastboot_lockdown/amzn_fastboot_lockdown.c">amzn_fastboot_lockdown.c</a>] 1st Patch<br>
 ```
 __attribute__((weak)) int is_locked_production_device() {
     return 0;
@@ -173,7 +173,7 @@ __attribute__((weak)) int is_locked_production_device() {
 }
 ```
 
-[amzn_fastboot_lockdown.c] 2nd Patch<br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/ufbl-features/features/fastboot_lockdown/amzn_fastboot_lockdown.c">amzn_fastboot_lockdown.c</a>] 2nd Patch<br>
 ```
 	for (i = 0; i < sizeof(blacklist) / sizeof(blacklist[0]); ++i) {
 		if (memcmp(buffer, blacklist[i], strlen(blacklist[i])) == 0) {
@@ -195,7 +195,7 @@ __attribute__((weak)) int is_locked_production_device() {
 ```
 =====================================================<br>
 
-[image_verify.c] Original<br>
+**[image_verify.c]** Original<br>
 Remove the fastboot flash image verification check<br>
 ``` 
 int
@@ -258,7 +258,7 @@ cleanup:
 }
 ```
 
-[image_verify.c] Patched<br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/ufbl-features/features/secure_boot/image_verify.c">image_verify.c</a>] Patched<br>
 ```
 int
 amzn_image_verify(const void *image,
@@ -283,7 +283,7 @@ int amzn_target_device_type(void)
 }
 ```
 
-[secure_boot.c] Patched<br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/board/amlogic/raven/secure_boot.c">secure_boot.c</a>] Patched<br>
 ```
 int amzn_target_device_type(void)
 {
