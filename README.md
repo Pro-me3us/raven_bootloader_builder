@@ -13,7 +13,7 @@ To compile the bootloader run:<br>
 sudo ./build_uboot.sh platform.tar output_directory_name
 ```
 
-Platform.tar is the compressed bootloader & kernel source from F<a href="https://fireos-tv-src.s3.amazonaws.com/YbHeBIPhSWxBTpng8Y0nLiquDC/FireTVCubeGen2-7.2.0.4-20191004.tar.bz2">FireTVCubeGen2-7.2.0.4-20191004.tar.bz2</a>. Merge the modified files provided here into your platform.tar to remove fastboot & U-Boot command restrictions from your build.
+Platform.tar is the compressed bootloader & kernel source from <a href="https://fireos-tv-src.s3.amazonaws.com/YbHeBIPhSWxBTpng8Y0nLiquDC/FireTVCubeGen2-7.2.0.4-20191004.tar.bz2">FireTVCubeGen2-7.2.0.4-20191004.tar.bz2</a>. Merge the modified files provided here into your platform.tar to remove fastboot & U-Boot command restrictions from your build.
 
 output_directory_name is the completed bootloader image destination.
 
