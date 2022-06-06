@@ -45,12 +45,12 @@ sudo openssl enc -aes-256-cbc -nopad -e -K 0000000000000000000000000000000000000
 Minor modifications were made to the build script to disable the automatic cleanup following compilation completion. Deletion of the working folder is disabled to to make all the components of the bootloader accessible including <code>bl33.bin.enc</code> (patched U-Boot image).
 
 Disable deletion of the working folder<br>
-<<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/build_uboot.sh">build_uboot.sh</a>> <br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/build_uboot.sh">build_uboot.sh</a>]<br>
 commented out line 48 <br>
 ```trap "rm -rf $WORKSPACE_DIR" EXIT```
 
 Disable deletion of the bootloader component images<br>
-<platform/bootable/bootloader/uboot-amlogic/s922x/fip/<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh">mk_script.sh</a>><br>
+[<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh">mk_script.sh</a>]<br>
 commented out lines 140-144 <br>
 ```
 function clean() {
