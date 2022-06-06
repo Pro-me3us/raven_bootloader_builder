@@ -117,11 +117,11 @@ bool amzn_is_command_blocked(const char *cmd)
 Removing Amazon's Fastboot command restrictions<br>
 ```
 __attribute__((weak)) int is_locked_production_device() {
--#if defined(UFBL_FEATURE_SECURE_BOOT)
--	return (AMZN_PRODUCTION_DEVICE == amzn_target_device_type()) && (1 != g_boot_arg->unlocked);
--#else
+#if defined(UFBL_FEATURE_SECURE_BOOT)
+	return (AMZN_PRODUCTION_DEVICE == amzn_target_device_type()) && (1 != g_boot_arg->unlocked);
+#else
 	return 0;
--#endif
+#endif
 }
 
 #else /* UFBL_PROJ_ABC */
