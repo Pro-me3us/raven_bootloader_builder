@@ -137,7 +137,11 @@ function update_bin_path() {
 
 function clean() {
 	echo "Clean up"
-
+#	cd ${UBOOT_SRC_FOLDER}
+#	make distclean
+#	cd ${MAIN_FOLDER}
+#	rm ${FIP_BUILD_FOLDER} -rf
+#	rm ${BUILD_FOLDER}/* -rf
 	return
 }
 
