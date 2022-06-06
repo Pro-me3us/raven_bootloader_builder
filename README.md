@@ -50,7 +50,7 @@ commented out line 48 <br>
 ```trap "rm -rf $WORKSPACE_DIR" EXIT```
 
 Disable deletion of the bootloader component images
-<platform/bootable/bootloader/uboot-amlogic/s922x/fip/<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh">mk_script.sh,/a>><br>
+<platform/bootable/bootloader/uboot-amlogic/s922x/fip/<a href="https://github.com/Pro-me3us/Raven_Bootloader_Builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/fip/mk_script.sh">mk_script.sh</a>><br>
 commented out lines 140-144 <br>
 ```
 function clean() {
