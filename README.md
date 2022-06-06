@@ -67,7 +67,7 @@ function clean() {
 ```
 	
 ### Removing Fastboot and U-Boot command restrictions
-[amzn_lockdown.c] Original<br>
+**[amzn_lockdown.c]** Original<br>
 Removing Amazon's U-Boot commandline restrictions<br>
 ```
 bool amzn_is_command_blocked(const char *cmd)
@@ -111,8 +111,9 @@ bool amzn_is_command_blocked(const char *cmd)
 	return false;
 }
 ```
+=====================================================<br>
 
-1) [amzn_fastboot_lockdown.c] Original<br>
+**[amzn_fastboot_lockdown.c]** Original<br>
 Removing Amazon's Fastboot command restrictions<br>
 ```
 __attribute__((weak)) int is_locked_production_device() {
@@ -151,7 +152,7 @@ __attribute__((weak)) int is_locked_production_device() {
 }
 ```
 
-2) [amzn_fastboot_lockdown.c] Original[br]
+**[amzn_fastboot_lockdown.c]** Original[br]
 ```
 	for (i = 0; i < sizeof(blacklist) / sizeof(blacklist[0]); ++i) {
 		if (memcmp(buffer, blacklist[i], strlen(blacklist[i])) == 0) {
@@ -192,6 +193,7 @@ __attribute__((weak)) int is_locked_production_device() {
 	return 0;
 }
 ```
+=====================================================<br>
 
 [image_verify.c] Original<br>
 Remove the fastboot flash image verification check<br>
@@ -266,9 +268,9 @@ amzn_image_verify(const void *image,
     return 1;
 }
 ```
+=====================================================<br>
 
-
-[secure_boot.c] Original<br>
+**[secure_boot.c]** Original<br>
 Designate the Cube as an engineering device.  This is a redundancy that should cover any restrictions that may have been missed.
 ```
 int amzn_target_device_type(void)
