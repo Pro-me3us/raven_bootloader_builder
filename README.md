@@ -299,7 +299,7 @@ int amzn_target_device_type(void)
 ```
 
 ### Setting the boot mode
-The bootmode is set in main.c
+The bootmode is set in 
 [<a href="https://github.com/Pro-me3us/raven_bootloader_builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/bl33/common/main.c">main.c</a>]<br>
 To automatically boot to fastboot add the following two lines above autoboot_command(s); (lines 144-145):
 ```
