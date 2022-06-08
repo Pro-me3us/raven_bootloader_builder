@@ -114,7 +114,7 @@ bool amzn_is_command_blocked(const char *cmd)
 	return false;
 }
 ```
-=====================================================<br>
+===========================================<br>
 
 **[amzn_fastboot_lockdown.c]** Original<br>
 Removing Amazon's Fastboot command restrictions<br>
@@ -196,7 +196,7 @@ __attribute__((weak)) int is_locked_production_device() {
 	return 0;
 }
 ```
-=====================================================<br>
+===========================================<br>
 
 **[image_verify.c]** Original<br>
 Remove the fastboot flash image verification check<br>
@@ -271,7 +271,7 @@ amzn_image_verify(const void *image,
     return 1;
 }
 ```
-=====================================================<br>
+===========================================<br>
 
 **[secure_boot.c]** Original<br>
 Designate the Cube as an engineering device.  This is a redundancy that should cover any restrictions that may have been missed.
@@ -296,4 +296,31 @@ int amzn_target_device_type(void)
 	else
 		return AMZN_ENGINEERING_DEVICE;
 }
+```
+
+### Setting the boot mode
+The bootmode is set in main.c
+[<a href="https://github.com/Pro-me3us/raven_bootloader_builder/blob/main/platform/bootable/bootloader/uboot-amlogic/s922x/bl33/common/main.c">main.c</a>]<br>
+To automatically boot to fastboot add the following two lines above autoboot_command(s); (lines 144-145):
+```
+#endif //#if defined(CONFIG_AML_UBOOT_AUTO_TEST)
+	run_command("fastboot", 0);
+	run_preboot_environment_command();
+
+	autoboot_command(s);
+```
+To boot to Amlogic's burn mode:
+```
+#endif //#if defined(CONFIG_AML_UBOOT_AUTO_TEST)
+	run_command("update", 0);
+	run_preboot_environment_command();
+
+	autoboot_command(s);
+```
+To automatically drop into the U-Boot console, simply comment out autoboot_command(s);
+
+```
+#endif //#if defined(CONFIG_AML_UBOOT_AUTO_TEST)
+
+       // autoboot_command(s);
 ```
